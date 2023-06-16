@@ -16,7 +16,7 @@ export const signup = async (req, res) => {
     const hashPassword = hash(password)
     
     const token = generateToken({email},process.env.EMAIL_TOKEN)
-    const link = `http://localhost:3000/auth/confirmEmail/${token}`
+    const link = `https://tiny-cyan-lion-kit.cyclic.app/auth/confirmEmail/${token}`
 
     
     await sendEmail(email, "a very trusted guy", `<a href="${link}">click me please!!!</a>`)
@@ -33,7 +33,7 @@ export const confirmEmail = async (req, res) => {
 
     const user = await userModel.updateOne({email:decoded.email}, {confirmEmail:true})
 
-    return res.json({message: "your email is confirmed, u can login now baby"})
+    return res.json({message: "your email is confirmed, u can login now"})
 
 }
 
